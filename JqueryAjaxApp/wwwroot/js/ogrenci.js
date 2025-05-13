@@ -1,26 +1,21 @@
 ﻿$(document).ready(function () {
-    // Sayfa yüklendiğinde öğrenci listesini getir
     loadOgrenciListe();
 
-    // Form submit olayını engelle ve Ajax ile gönder
     $("#ogrenciEkleForm").on("submit", function (e) {
         e.preventDefault();
         ekleOgrenci();
     });
 
-    // Güncellenecek öğrencinin bilgilerini form içine yükle
     $(document).on("click", ".btn-duzenle", function () {
         const id = $(this).data("id");
         getOgrenciById(id);
     });
 
-    // Güncelleme formunun submit olayını engelle ve Ajax ile gönder
     $("#ogrenciGuncelleForm").on("submit", function (e) {
         e.preventDefault();
         guncelleOgrenci();
     });
 
-    // Öğrenci silme işlemi
     $(document).on("click", ".btn-sil", function () {
         const id = $(this).data("id");
         if (confirm("Bu öğrenciyi silmek istediğinize emin misiniz?")) {
@@ -29,7 +24,6 @@
     });
 });
 
-// Tüm öğrencileri getir ve tabloya doldur
 function loadOgrenciListe() {
     $.ajax({
         url: "/Ogrenci/OgrenciListeAjax",
@@ -57,7 +51,6 @@ function loadOgrenciListe() {
     });
 }
 
-// ID'ye göre öğrenci bilgilerini getir
 function getOgrenciById(id) {
     $.ajax({
         url: `/Ogrenci/OgrenciGetirAjax?id=${id}`,
@@ -75,7 +68,7 @@ function getOgrenciById(id) {
     });
 }
 
-// Yeni öğrenci ekle
+
 function ekleOgrenci() {
     const ogr = {
         Ad: $("#ekleAd").val(),
@@ -104,7 +97,7 @@ function ekleOgrenci() {
     });
 }
 
-// Öğrenci güncelle
+
 function guncelleOgrenci() {
     const ogrenci = {
         OgrenciId: $("#guncelleId").val(),
@@ -133,7 +126,6 @@ function guncelleOgrenci() {
     });
 }
 
-// Öğrenci sil
 function silOgrenci(id) {
     $.ajax({
         url: "/Ogrenci/OgrenciSilAjax",
