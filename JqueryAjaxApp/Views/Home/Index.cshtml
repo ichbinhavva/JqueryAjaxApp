@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "jQuery AJAX Örneği";
+}
+
+<div class="container mt-5">
+    <h2>jQuery AJAX Örneği</h2>
+
+    <div class="form-group">
+        <label for="nameInput">İsminiz:</label>
+        <input type="text" class="form-control" id="nameInput" placeholder="İsminizi girin">
+    </div>
+
+    <button id="sendButton" class="btn btn-primary mt-3">Gönder</button>
+
+    <div id="result" class="mt-3 alert alert-info" style="display: none;"></div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#sendButton").click(function () {
+                // AJAX isteği gönderme
+                $.ajax({
+                    url: '@Url.Action("GetData", "Home")',
+                    type: 'POST',
+                    data: { name: $("#nameInput").val() },
+                    success: function (response) {
+                        // Başarılı yanıt geldiğinde
+                        $("#result").html(response.message).show();
+                    },
+                    error: function (xhr, status, error) {
+                        // Hata durumunda
+                        $("#result").html("Bir hata oluştu: " + error).show();
+                    }
+                });
+            });
+        });
+    </script>
+}
+

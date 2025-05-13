@@ -1,0 +1,28 @@
+﻿@model Ogrenci
+@{
+    ViewData["Title"] = "Ogrenci Ekle";
+}
+
+<h1>Öğrenci Ekle</h1>
+
+<div id="notification" class="alert" style="display:none;"></div>
+
+<form id="ogrenciEkleForm" method="post">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Ad"></label>
+        <input class="form-control" type="text" asp-for="Ad" />
+        <span asp-validation-for="Ad" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Soyad"></label>
+        <input class="form-control" type="text" asp-for="Soyad" />
+        <span asp-validation-for="Soyad" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-success" value="Kaydet" />
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/ogrenci.js" asp-append-version="true"></script>
+}
